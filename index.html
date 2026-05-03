@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Ayat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS المدمج والمطور بستايل Pinky Luxury */
+        * {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+            background: #000;
+            color: #fff5f8; /* وردي فاتح جداً للخط */
+        }
+
+        /* الفيديو */
+        video {
+            position: fixed;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.3) contrast(1.1);
+            z-index: -2;
+        }
+
+        /* التغطية (Overlay) */
+        .overlay {
+            position: fixed;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.05), rgba(0, 0, 0, 0.9));
+            z-index: -1;
+        }
+
+        /* المشاهد */
+        .scene {
+            position: absolute;
+            width: 100%; height: 100%;
+            display: flex;
+            justify-content: center; align-items: center;
+            text-align: center;
+            padding: 40px;
+            opacity: 0;
+            transform: scale(1.1);
+            transition: 1.8s cubic-bezier(0.25, 1, 0.3, 1);
+            visibility: hidden;
+        }
+
+        .scene.active {
+            opacity: 1;
+            transform: scale(1);
+            visibility: visible;
+        }
+
+        /* النصوص */
+        h1 {
+            max-width: 800px;
+            font-size: 24px;
+            line-height: 1.8;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .big {
+            font-size: 32px;
+            font-family: 'Dancing Script', cursive;
+            color: #f8bbd0; /* Pinky Color */
+        }
+
+        /* الأزرار الفخمة */
+        .row {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 14px 30px;
+            border-radius: 40px;
+            border: 1px solid #d4af37; /* لمسة ذهبية */
+            cursor: pointer;
+            font-size: 16px;
+            background: linear-gradient(135deg, rgba(248, 187, 208, 0.2), rgba(173, 20, 87, 0.4));
+            color: white;
+            transition: 0.4s all;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        button:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: linear-gradient(135deg, #f8bbd0, #ad1457);
+            box-shadow: 0 8px 20px rgba(248, 187, 208, 0.4);
+        }
+
+        /* القلوب المتطايرة */
+        .heart {
+            position: absolute;
+            z-index: 100;
+            pointer-events: none;
+            animation: float 3s linear forwards;
+            color: #ff69b4;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0) rotate(0deg); opacity: 1; }
+            to { transform: translateY(-400px) rotate(360deg); opacity: 0; }
+        }
+
+        .arabic-text {
+            direction: rtl;
+            font-size: 1.5rem;
+            max-width: 700px;
+        }
+    </style>
+</head>
+<body>
+
+<audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b6f7c8c6.mp3?filename=soft-piano-ambient-110397.mp3" type="audio/mp3">
+</audio>
+
+<video autoplay muted loop playsinline>
+    <source src="https://cdn.coverr.co/videos/coverr-a-couple-walking-on-the-beach-1667/1080p.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- المشهد 1 -->
+<div class="scene active" id="s1">
+  <div>
+    <h1 class="fade">
+        This is not just a website…<br>
+        it’s a feeling made for <span class="big">Ayat</span>.
+    </h1>
+    <button onclick="startExperience()">Start</button>
+  </div>
+</div>
+
+<!-- المشهد 2 -->
+<div class="scene" id="s2">
+  <div>
+    <h1>Before we begin…<br>how do you want to feel?</h1>
+    <div class="row">
+      <button onclick="next(3)">💖 Loved</button>
+      <button onclick="next(3)">🌙 Understood</button>
+      <button onclick="next(3)">✨ Surprised</button>
+    </div>
+  </div>
+</div>
+
+<!-- المشهد 3 -->
+<div class="scene" id="s3">
+  <div class="arabic-text">
+    <h1 class="big" style="font-size: 40px;">آيات..</h1>
+    <p>انا عارف اني اوقات كتير بزعلك و انك بتشوفي ده قلة اهتمام او زعلك ده حاجه بسيطه بالنسبالي ، ومقدرش الومك لو وصلك الاحساس ده</p><br>
+    <p>بس انا مقصدش ابدا احسسك كده و انتي فعلا اغلي انسانه ف حياتي</p><br>
+    <p>ميفرقليش اي حد تاني وعشان كده بحاول اثبتلك ده</p><br>
+    <p style="color: #d4af37; font-weight: bold;">انا بحبك و نفسي اوي اكمل حياتي معاكي</p>
+    <div class="row">
+      <button onclick="yes()">YES 💖</button>
+      <button onclick="no()">🥺 NO</button>
+    </div>
+  </div>
+</div>
+
+<!-- المشهد 4 (YES) -->
+<div class="scene" id="s4">
+  <div>
+    <h1 class="big">💖 She said YES…</h1>
+    <h1>now everything feels different.</h1>
+    <div class="row">
+      <button onclick="future()">Explore Future</button>
+      <button onclick="restart()">Replay</button>
+    </div>
+  </div>
+</div>
+
+<!-- المشهد 5 (NO) -->
+<div class="scene" id="s5">
+  <div>
+    <h1 class="big">💔 I understand…</h1>
+    <h1>but you’ll always matter.</h1>
+    <div class="row">
+      <button onclick="calm()">Calm Mode</button>
+      <button onclick="restart()">Replay</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* JavaScript المدمج */
+function startExperience() {
+    const audio = document.getElementById('music');
+    audio.play().catch(e => console.log("Audio play blocked"));
+    next(2);
+}
+
+function next(n){
+  show(n);
+}
+
+function show(n){
+  document.querySelectorAll(".scene").forEach(s=>s.classList.remove("active"));
+  document.getElementById("s"+n).classList.add("active");
+}
+
+function restart(){
+  show(1);
+}
+
+function yes(){
+  show(4);
+  hearts(80);
+}
+
+function no(){
+  show(5);
+}
+
+function future(){
+  hearts(120);
+  alert("A future I hope becomes real 💖");
+}
+
+function calm(){
+  alert("Take your time… 🌙");
+}
+
+function hearts(count){
+  for(let i=0;i<count;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    document.body.appendChild(h);
+
+    h.style.left=Math.random()*100+"vw";
+    h.style.top="80vh";
+    h.style.fontSize=(10+Math.random()*25)+"px";
+
+    setTimeout(()=>h.remove(),3000);
+  }
+}
+</script>
+</body>
+</html>
